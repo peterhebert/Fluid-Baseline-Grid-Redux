@@ -1,0 +1,48 @@
+/*
+let's have some fun with grids
+
+*/
+
+/* golden ratio percentages */
+@Phi: `(1 + Math.sqrt(5)) / 2`;
+@goldenA: percentage(1/@Phi);
+@goldenB: percentage(1 - (1/@Phi));
+
+/* GOLDEN RATIO GRID */
+
+@baseMargin: 2%;
+@totalMargin: (@baseMargin * 2);
+
+.g1,.g2,.g3 {display:inline; float: left; margin-left: @baseMargin; margin-right: @baseMargin; }
+
+.g1 {width: (@goldenA - @totalMargin); }
+.g2 {width: (@goldenB - @totalMargin) }
+.g3 {width: (100% - @totalMargin ) } /* full width - gutter */
+
+/* FIBONACCI SEQUENCE BASED GRID */
+
+/*
+@n = nth number in sequence
+@g = gutter (margin) on each side
+@p = padding on each side (defaults to none
+*/
+.fib (@n: 3, @g:1, @p:0) {
+    @fib: `Math.round((Math.pow(@{Phi},@{n}))/Math.sqrt(5)) -(2*@{g}) -(2*@{p})`;
+    
+    @fibEm: ~`"@{fib}" + 'em'`;
+    
+    @mar: ~`"0 @{g}" + 'em'`;
+    @pad: ~`"@{p}" + 'em'`;
+    
+    
+    width: @fibEm;
+    margin: @mar;
+    padding: @pad;
+    
+}
+
+/* some test grid declarations */
+
+.f3 { .fib(3,1,1) } /* standard - 3rd fibonacci number, 1em inner width, no padding and 1em margin on each side */
+.f12 { .fib(12,1) } /* 12th in sequence = 142em width + 1em left + 1em right margin */
+

@@ -8,6 +8,9 @@
 	Adapted to LESS by Peter Hebert, http://peterhebert.com
 	
 	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
+	
+	Modified Grid to use Golden Ratio, with a secondary grid based upon the Fibonacci Sequence
+	
 */
 
 /*LESS mixins
@@ -121,28 +124,20 @@ span.amp{font-family:Adobe Caslon Pro,Baskerville,"Goudy Old Style","Palatino","
 .cf {zoom:1} /* For IE 6/7 (trigger hasLayout) */
 
 /* DEFAULT MOBILE STYLE */
-body {width: 96%; margin: 0 auto} /* Center page without wrapper */
+body {width: 98%; margin: 0 auto} /* Center page without wrapper */
 
-@import "grid.less";
+@import "golden-fibonacci-grid.less";
 
 /* media Queries */
-
-
+/* em-based media query to show enabling grid based on content 
+and optimal line length */
 @media all and (min-width: 35em) {
 	#content #main { .g1;	}
-	#content #secondary { .g2;	}
+	#content #secondary { .g2; }
+	header, footer {.g3; }
 }
 
-
-
-/* HIGH RESOLUTION / RETINA DISPLAYS */
-
-/* for high resolution display */
-@media only screen and (min-device-pixel-ratio: 2) {
-
-
-}
-
+/* add more breakpoints / media queries here */
 
 /* WIDESCREEN */
 /* Increased body size for legibility */
