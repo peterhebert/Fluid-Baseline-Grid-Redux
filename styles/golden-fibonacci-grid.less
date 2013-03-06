@@ -34,7 +34,8 @@ let's have some fun with grids
     @mar: ~`"0 @{g}" + 'em'`;
     @pad: ~`"@{p}" + 'em'`;
     
-    
+    display:inline; 
+    float: left; 
     width: @fibEm;
     margin: @mar;
     padding: @pad;
@@ -43,6 +44,6 @@ let's have some fun with grids
 
 /* some test grid declarations */
 
-.f3 { .fib(3,1,1) } /* standard - 3rd fibonacci number, 1em inner width, no padding and 1em margin on each side */
+.f3 { .fib(5,1,1) } /* standard - 5th fibonacci number, 1em inner width, no padding and 1em margin on each side */
 .f12 { .fib(12,1) } /* 12th in sequence = 142em width + 1em left + 1em right margin */
 

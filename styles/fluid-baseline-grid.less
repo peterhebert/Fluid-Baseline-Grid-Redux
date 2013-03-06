@@ -23,14 +23,14 @@ font stacks
 .preformatted { font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace }
 
 .show-baselines {background:url('../images/24px_grid_bg.gif') 0 1.1875em} /*show baselines in backround */
-	
+
 /* HTML5 DECLARATIONS */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, dialog {display: block}
 audio[controls],canvas,video {display: inline-block; *display: inline; zoom: 1}
 
 /* BASE */
-html {height: 100%; font-size: 100%; overflow-y: scroll; -webkit-text-size-adjust: 100%; } /* Force scrollbar in non-IE and Remove iOS text size adjust without disabling user zoom */
-body {margin: 0; min-height: 100%; -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; } /* Improve default text rendering, handling of kerning pairs and ligatures */
+html {height: 100%; font-size: 100%; margin: 0; padding: 0; overflow-y: scroll; -webkit-text-size-adjust: 100%; } /* Force scrollbar in non-IE and Remove iOS text size adjust without disabling user zoom */
+body {margin: 0; padding: 0; min-height: 100%; -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; } /* Improve default text rendering, handling of kerning pairs and ligatures */
 
 
 /* DEFAULT FONT SETTINGS */
@@ -41,14 +41,14 @@ p, blockquote, q, pre, address, hr, code, samp, dl, ol, ul, form, table, fieldse
 
 /* TYPOGRAPHY */
 /* Composed to a scale of 12px, 14px, 16px, 18px, 21px, 24px, 36px, 48px, 60px and 72px */
-h1, h2, h3, h4, h5, h6 {text-shadow:1px 1px 1px rgba(0,0,0,.10);.serif-headlines}
-h1 {margin: 0; font-size: 3.75em; line-height: 1.2em; margin-bottom: 0.4em} /* 60px / 72px */
-h2 {margin: 0; font-size: 3em; line-height: 1em; margin-bottom: 0.5em} /* 48px / 48px */
-h3 {margin: 0; font-size: 2.25em; line-height: 1.3333333333333333333333333333333em; margin-bottom: 0.6667em} /* 36px / 48px */ 
-h4 {margin: 0; font-size: 1.5em; line-height: 1em; margin-bottom: 1em} /* 24px / 24px */
-h5 {margin: 0; font-size: 1.3125em; line-height: 1.1428571428571428571428571428571em; margin-bottom: 1.1428571428571428571428571428571em} /* 21px / 24px */
-h6 {margin: 0; font-size: 1.125em; line-height: 1.3333333333333333333333333333333em; margin-bottom: 1.3333333333333333333333333333333em} /* 18px / 24px */
-p, ul, blockquote, pre, td, th, label {margin: 0; font-size: 1em; line-height: 1.5em; margin-bottom: 1.5em} /* 16px / 24px */
+h1, h2, h3, h4, h5, h6 { .serif-headlines }
+h1, .h1 {margin: 0; font-size: 3.75em; line-height: 1.2em; margin-bottom: 0.4em} /* 60px / 72px */
+h2, .h2 {margin: 0; font-size: 3em; line-height: 1em; margin-bottom: 0.5em} /* 48px / 48px */
+h3, .h3 {margin: 0; font-size: 2.25em; line-height: 1.3333333333333333333333333333333em; margin-bottom: 0.6667em} /* 36px / 48px */ 
+h4, .h4 {margin: 0; font-size: 1.5em; line-height: 1em; margin-bottom: 1em} /* 24px / 24px */
+h5, .h5 {margin: 0; font-size: 1.3125em; line-height: 1.1428571428571428571428571428571em; margin-bottom: 1.1428571428571428571428571428571em} /* 21px / 24px */
+h6, .h6 {margin: 0; font-size: 1.125em; line-height: 1.3333333333333333333333333333333em; margin-bottom: 1.3333333333333333333333333333333em} /* 18px / 24px */
+p, .p, ul, blockquote, pre, td, th, label {margin: 0; font-size: 1em; line-height: 1.5em; margin-bottom: 1.5em} /* 16px / 24px */
 small, p.small {margin: 0; font-size: 0.875em; line-height: 1.7142857142857142857142857142857em; margin-bottom: 1.7142857142857142857142857142857em} /* 14px / 24px */
 
 /* CODE */
@@ -87,8 +87,8 @@ dl dd {margin-left: 1.5em}
 dt {font-family:Futura, "Century Gothic", AppleGothic, sans-serif}
 
 /* HYPERLINKS */
-a {text-decoration: none; color:#c47529}
-a:hover {text-decoration: underline}
+a {text-decoration: underline; color: #009; }
+a:hover { color: #00f }
 a:focus {outline: thin dotted}
 a:hover, a:active {outline: none} /* Better CSS Outline Suppression */
 
@@ -118,26 +118,18 @@ sup {top: -0.5em} /* Move superscripted text up */
 sub {bottom: -0.25em} /* Move subscripted text down */
 span.amp{font-family:Adobe Caslon Pro,Baskerville,"Goudy Old Style","Palatino","Palatino Linotype","Book Antiqua",Georgia,"Times New Roman",Times,serif;font-style:italic;font-size:110%;line-height:0;position:relative;vertical-align:baseline} /* Best available ampersand */
 
-/* MICRO CLEARFIX HACK */
-.cf:before, .cf:after {content:"";display:table} /* For modern browsers */
-.cf:after {clear:both}
-.cf {zoom:1} /* For IE 6/7 (trigger hasLayout) */
+/* MICRO CLEARFIX HACK - converted for LESS */
+.cf {
+zoom:1; /* For IE 6/7 (trigger hasLayout) */
+&:before, &:after{ content:""; display:table; } /* For modern browsers */
+&:after{ clear: both; }
+}
 
 /* DEFAULT MOBILE STYLE */
 body {width: 98%; margin: 0 auto} /* Center page without wrapper */
 
-@import "golden-fibonacci-grid.less";
 
-/* media Queries */
-/* em-based media query to show enabling grid based on content 
-and optimal line length */
-@media all and (min-width: 35em) {
-	#content #main { .g1;	}
-	#content #secondary { .g2; }
-	header, footer {.g3; }
-}
-
-/* add more breakpoints / media queries here */
+/* add breakpoints / media queries here */
 
 /* WIDESCREEN */
 /* Increased body size for legibility */
