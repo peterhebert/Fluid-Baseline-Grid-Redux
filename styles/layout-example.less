@@ -1,0 +1,45 @@
+@import "fluid-baseline-grid";
+@import "golden-fibonacci-grid";
+
+.show-baselines {background:url('../images/grid-16-24.png') 0 1.1875em} /*show baselines in backround */
+
+.bordered(@top-color: #EEE, @right-color: #EEE, @bottom-color: #EEE, @left-color: #EEE) {
+  border-top: solid 1px @top-color;
+  border-left: solid 1px @left-color;
+  border-right: solid 1px @right-color;
+  border-bottom: solid 1px @bottom-color;
+}
+
+/* custom typography */
+h1 { .h2; }
+h2 { .h3; } 
+h3 { .h4; }
+h4 { .h5; }
+h5 { .h6; }
+h6 { .p; }
+
+/*
+header
+
+*/
+#content { .cf; }
+#content #main { .g1;  }
+#content #secondary { .g2 }
+
+.masthead { background-color: #333; color: #eee; .cf; width: 98%; padding: .75em; margin: .75em auto; .bordered;}
+.masthead a { color: #fc0; text-decoration: underline; }
+.masthead a:hover { color: #00f }
+.masthead h1 { .h3 }
+
+.img-polaroid {
+    background-color: #FFFFFF;
+    border: 0.0625em solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 0.25em;
+}
+
+/* thumbnails */
+ul.thumbnails,  { list-style-type: none; margin: 0 0 1.5em 0; padding: 0; }
+.thumbnails li { .fib(6,1,0); background-color: yellow; }
+.thumbnails li p { margin: 0; }
+.thumbnails img { .img-polaroid ; width: 5.375em; margin: 0}

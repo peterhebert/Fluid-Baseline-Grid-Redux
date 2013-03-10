@@ -22,7 +22,11 @@ font stacks
 .sans-headlines { font-family: "Helvetica Neue", Helvetica, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Nimbus Sans, Arial, "Liberation Sans", sans-serif }
 .preformatted { font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace }
 
-.show-baselines {background:url('../images/24px_grid_bg.gif') 0 1.1875em} /*show baselines in backround */
+.show-baselines {
+	 /* show baselines in background */
+	background:url('../images/baseline-16-24.png') 0 0.125em;
+	background-image:url('../images/baseline-16-24.svg');
+}
 
 /* HTML5 DECLARATIONS */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, dialog {display: block}
@@ -30,7 +34,7 @@ audio[controls],canvas,video {display: inline-block; *display: inline; zoom: 1}
 
 /* BASE */
 html {height: 100%; font-size: 100%; margin: 0; padding: 0; overflow-y: scroll; -webkit-text-size-adjust: 100%; } /* Force scrollbar in non-IE and Remove iOS text size adjust without disabling user zoom */
-body {margin: 0; padding: 0; min-height: 100%; -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; } /* Improve default text rendering, handling of kerning pairs and ligatures */
+body {margin: 0; padding: 0; min-height: 100%; -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; background-color: #eee;} /* Improve default text rendering, handling of kerning pairs and ligatures */
 
 
 /* DEFAULT FONT SETTINGS */
@@ -49,7 +53,7 @@ h4, .h4 {margin: 0; font-size: 1.5em; line-height: 1em; margin-bottom: 1em} /* 2
 h5, .h5 {margin: 0; font-size: 1.3125em; line-height: 1.1428571428571428571428571428571em; margin-bottom: 1.1428571428571428571428571428571em} /* 21px / 24px */
 h6, .h6 {margin: 0; font-size: 1.125em; line-height: 1.3333333333333333333333333333333em; margin-bottom: 1.3333333333333333333333333333333em} /* 18px / 24px */
 p, .p, ul, blockquote, pre, td, th, label {margin: 0; font-size: 1em; line-height: 1.5em; margin-bottom: 1.5em} /* 16px / 24px */
-small, p.small {margin: 0; font-size: 0.875em; line-height: 1.7142857142857142857142857142857em; margin-bottom: 1.7142857142857142857142857142857em} /* 14px / 24px */
+small, .small {margin: 0; font-size: 0.875em; line-height: 1.7142857142857142857142857142857em; margin-bottom: 1.7142857142857142857142857142857em} /* 14px / 24px */
 
 /* CODE */
 pre {white-space: pre; white-space: pre-wrap; word-wrap: break-word} /* Allow line wrapping of 'pre' */
@@ -125,22 +129,53 @@ zoom:1; /* For IE 6/7 (trigger hasLayout) */
 &:after{ clear: both; }
 }
 
-/* DEFAULT MOBILE STYLE */
+/* Default Styles for all sized devices */
 body {width: 98%; margin: 0 auto} /* Center page without wrapper */
+#content { .cf }
 
+/* media queries based upon logical width in EMs */
 
-/* add breakpoints / media queries here */
-
-/* WIDESCREEN */
-/* Increased body size for legibility */
-@media only screen and (min-width: 1400px),
-only screen and (-webkit-device-pixel-ratio: 2)
-{ 
-	// .show-baselines { background:url('../images/28px_grid_bg.gif') 0 1.25em; } /* show baselines in background */
-
-	body {font-size:116.75%; .show-baselines} /* 18.5px / 28px */
+@media screen and (max-width: 36em) 
+{
+    /* phone | 1 column */
 }
 
+@media screen and (min-width: 36em) and (max-width: 58.5em) 
+{
+    /* small tablet / desktop | 2 column */
+}
+
+@media screen and (min-width: 58.5em) and (max-width: 94.5em) 
+{
+    /* medium tablet / desktop | 3 column */
+
+}
+
+@media screen and (min-width: 94.5em) and (max-width: 117em) 
+{
+    /* medium tablet / desktop | 4 column */
+
+	/* 20px / 30px  body text */
+	.show-baselines {
+		background:url('../images/baseline-20-30.png') 0 0.125em;
+		background-image:  url('../images/baseline-20-30.svg');
+	}
+	body { font-size:125%;	}
+
+}
+
+@media screen and (min-width: 117em)
+{
+    /* extra large desktop  */
+
+	/* 24px / 36px  body text */
+	.show-baselines {
+		background:url('../images/baseline-24-36.png') 0 0.125em;
+		background-image:url('../images/baseline-24-36.svg');
+	}
+	body { font-size:150%;	}
+
+}
 
 /* PRINT */
 @media print {
