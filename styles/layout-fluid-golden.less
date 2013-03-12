@@ -1,0 +1,83 @@
+@import "base";
+@import "grid";
+
+/* base styles for all media */
+
+header, footer, #content  { .cf; margin: 0 auto }
+
+header section {.g1 }
+header div { .g2 }
+
+/* golden fluid grid examples */
+
+	@media screen and (max-width: 36em) 
+	{
+		/* phone | 1 column */
+	
+	}
+	@media screen and (min-width: 36em)
+	{
+		footer { .g3 }
+	}
+	@media screen and (min-width: 36em) and (max-width: 58.5em) 
+	{
+		/* small tablet / desktop | 2 column */
+
+		#primary { .g1 }
+		#secondary,
+		#third,
+		#fourth,
+		#fifth
+		 { .g2; display: block; float:none; margin-left: (@goldenA + @baseMargin) }
+
+	}
+	@media screen and (min-width: 58.5em) and (max-width: 94.5em) 
+	{
+		/* medium tablet / desktop | 3 column */
+
+		#primary { .g2 }
+		#secondary { .gnest(@ga, @gb) }
+		#third,
+		#fourth,
+		#fifth { .gnest(@ga, @ga); display: block; float:none; margin-left: (@goldenA + @baseMargin) }
+
+	}
+	@media screen and (min-width: 94.5em) and (max-width: 117em) 
+	{
+		/* medium tablet / desktop | 4 column */
+	 
+		#primary { .g2 }
+		#secondary { .gnest(@ga, @gb) }
+		#third,
+		#fourth,
+		#fifth { .gnest(@ga, @ga); display: block; float:none; margin-left: (@goldenA + @baseMargin) }
+
+		/* 20px / 30px  body text */
+		.show-baselines {
+			background:url('../images/baseline-20-30.png') 0 0.125em;
+			background-image:  url('../images/baseline-20-30.svg');
+		}
+		body { font-size:125%;	}
+
+	}
+	@media screen and (min-width: 117em)
+	{
+		/* extra large desktop | 5 column */
+
+		#primary { .gnest(@ga, (@ga * @ga) ) }
+		#secondary { .gnest(@ga, (@ga * @gb) ) }
+		#third  { .gnest(@ga, @gb ) }
+		#fourth  { .gnest(@gb, @gb) }
+		#fifth { .gnest(@gb, @ga) }
+
+		/* 24px / 36px  body text */
+		.show-baselines {
+			background:url('../images/baseline-24-36.png') 0 0.125em;
+			background-image:url('../images/baseline-24-36.svg');
+		}
+		body { font-size:150%;	}
+	}
+
+
+@import "print";
+

@@ -4,11 +4,16 @@ let's have some fun with grids
 */
 
 /* golden ratio percentages */
-@Phi: `(1 + Math.sqrt(5)) / 2`;
+
+@Phi: `(Math.sqrt(5) + 1) / 2`;
+
+@ga: (1/@Phi);
+@gb: (1 - (1/@Phi));
+
 @goldenA: percentage(1/@Phi);
 @goldenB: percentage(1 - (1/@Phi));
 
-/* GOLDEN RATIO GRID */
+/* GOLDEN RATIO GRID - for fluid layouts */
 
 @baseMargin: 2%;
 @totalMargin: (@baseMargin * 2);
@@ -17,33 +22,74 @@ let's have some fun with grids
 
 .g1 {width: (@goldenA - @totalMargin); }
 .g2 {width: (@goldenB - @totalMargin) }
-.g3 {width: (100% - @totalMargin ) } /* full width - gutter */
+/* full width - gutter */
+.g3 {width: (100% - @totalMargin ) }
+
+/* for sub-layouts without nesting divs */
+.gnest(@parent: 1, @child: 1)
+{
+	display:inline; 
+	float: left; 
+	width: (percentage(@parent * @child) - @totalMargin);
+	margin-left: @baseMargin; 
+	margin-right: @baseMargin; 
+}
+
+/* fixed width layout grids */
+
+/* base column width without margin or padding */
+@basecol: 4.5;
 
 /* FIBONACCI SEQUENCE BASED GRID */
 
-/*
+/* measurements in EMs
 @n = nth number in sequence
-@g = gutter (margin) on each side
-@p = padding on each side (defaults to none
+@m = margin on each side
+@p = padding on each side (defaults to none)
+@b = base column width
 */
-.fib (@n: 3, @g:1, @p:0) {
-    @fib: `Math.round((Math.pow(@{Phi},@{n}))/Math.sqrt(5)) -(2*@{g}) -(2*@{p})`;
+
+.fib (@n: 3, @m:0.75, @p:0, @b: 4.5) {
     
-    @fibEm: ~`"@{fib}" + 'em'`;
-    
-    @mar: ~`"0 @{g}" + 'em'`;
-    @pad: ~`"@{p}" + 'em'`;
-    
+	@col:`(Math.round(Math.pow(@{Phi},@{n})/Math.sqrt(5)) * @{b}) - (2* (@{m} + @{p}))`;
+
     display:inline; 
     float: left; 
-    width: @fibEm;
-    margin: @mar;
-    padding: @pad;
+    width: ~`"@{col}rem"`;
+    margin-left: ~`"@{m}rem"`;
+    margin-right: ~`"@{m}rem"`;
+    padding: ~`"@{p}rem"`;
+
+}
+/* allow columns to stack vertically without floating */
+.fib-unfloat (@n: 3, @m:0.75, @b: 4.5) {
     
+	@ml:`(Math.round(Math.pow(@{Phi},@{n})/Math.sqrt(5)) * @{b}) + @{m}`;
+	
+    display:block; 
+    float: none; 
+    margin-left: ~`"@{ml}rem"`;
+
 }
 
-/* some test grid declarations */
 
-.f3 { .fib(5,1,1) } /* standard - 5th fibonacci number, 1em inner width, no padding and 1em margin on each side */
-.f12 { .fib(12,1) } /* 12th in sequence = 142em width + 1em left + 1em right margin */
+/* GENERIC COLUMN GENERATOR */
+/* measurements in ems
+@cols = column span
+@b = base column width
+@m = margin on each side
+@p = padding on each side 
+*/
 
+.col (@cols: 1, @m: .75, @p: 0, @b: 4.5)
+{
+    @colw: (@cols * @b) - (2* (@m + @p));
+
+    display:inline; 
+    float: left; 
+    width: unit(@colw, em);
+    margin-left: unit(@m, em);
+    margin-right: unit(@m, em);
+    padding: unit(@p, em);
+	
+}

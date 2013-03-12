@@ -1,0 +1,72 @@
+@import "base";
+@import "grid";
+
+/* base styles for all media */
+
+header, footer, #content  { .cf; margin: 0 auto}
+
+
+/* fibonnaci fixed grid examples */
+
+	@media screen and (min-width: 38em) and (max-width: 60.5em) 
+	{
+		/* fixed fibonaci  | 2 column */
+
+		header, footer, #content  { width: 36em; }
+
+		#primary { .fib(5) }
+		#secondary,
+		#third,
+		#fourth,
+		#fifth
+		 { .fib(4); .fib-unfloat(5); }
+
+	}
+
+	@media screen and (min-width: 60.5em) and (max-width: 96.5em) 
+	{
+		/* fixed fibonaci  | 3 column */
+
+		header, footer, #content  { width: 58.5em; }
+
+		#primary { .fib(5) }
+		#group_2 { .fib(4) }
+		#group_3 { .fib(5) }
+
+	}
+
+	@media screen and (min-width: 96.5em) and (max-width: 155em) 
+	{
+		/* fixed fibonaci  | 4 column */
+
+		header, footer, #content  { width: 94.5em; }
+
+		#primary { .fib(6) }
+		#secondary {.fib(5) }
+		#third { .fib(5) }
+		#group_3 { .fib(4) }
+
+		/* 20px / 30px  body text */
+		.show-baselines {
+			background:url('../images/baseline-20-30.png') 0 0.125em;
+			background-image:  url('../images/baseline-20-30.svg');
+		}
+		body { font-size:125%;	}
+
+	}
+
+	@media screen and (min-width: 155em)
+	{
+		header, footer, #content  { width: 153em; }
+
+		#primary { .fib(6) }
+		#secondary {.fib(5) }
+		#third { .fib(5) }
+		#fourth { .fib(4) }
+		#fifth { .fib(5); }
+
+	}
+
+
+@import "print";
+

@@ -1,0 +1,409 @@
+/*
+	LESS-ified derivitave of:
+	
+	Fluid Baseline Grid v1.0.0
+	Designed & Built by Josh Hopkins and 40 Horse, http://40horse.com	
+	Licensed under Unlicense, http://unlicense.org/
+	
+	Adapted to LESS by Peter Hebert, http://peterhebert.com
+	
+	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
+	
+	Modified Grid to use Golden Ratio, with a secondary grid based upon the Fibonacci Sequence
+	
+*/
+/* font stacks */
+.serif-text {
+  font-family: "Palatino Linotype", "Book Antiqua", "Constantia", "Garamond", "Times New Roman", serif;
+}
+.serif-headlines {
+  font-family: Palatino, "Palatino Linotype", Garamond, Times, "Times New Roman", serif;
+}
+.sans-text {
+  font-family: Optima, Segoe, "Segoe UI", "Helvetica Neue", Helvetica, Nimbus Sans, Arial, "DejaVu Sans", "Liberation Sans", sans-serif;
+}
+.sans-headlines {
+  font-family: "Helvetica Neue", Helvetica, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Nimbus Sans, Arial, "Liberation Sans", sans-serif;
+}
+.preformatted {
+  font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace;
+}
+.show-baselines {
+  /* show baselines in background */
+
+  background: url('../images/baseline-16-24.png') 0 0.125em;
+  background-image: url('../images/baseline-16-24.svg');
+}
+/* HTML5 DECLARATIONS */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+dialog {
+  display: block;
+}
+audio[controls], canvas, video {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+/* BASE */
+html {
+  height: 100%;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  -webkit-text-size-adjust: 100%;
+}
+/* Force scrollbar in non-IE and Remove iOS text size adjust without disabling user zoom */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* Improve default text rendering, handling of kerning pairs and ligatures */
+/* DEFAULT FONT SETTINGS */
+/* 16px base font size with 150% (24px) friendly, unitless line height and margin for vertical rhythm */
+/* Font-size percentage is based on 16px browser default size */
+body,
+button,
+input,
+select,
+textarea {
+  font: 100%/1.5;
+  *font-size: 1em;
+  color: #333;
+  font-family: "Palatino Linotype", "Book Antiqua", "Constantia", "Garamond", "Times New Roman", serif;
+}
+/* IE7 and older can't resize px based text */
+p,
+blockquote,
+q,
+pre,
+address,
+hr,
+code,
+samp,
+dl,
+ol,
+ul,
+form,
+table,
+fieldset,
+menu,
+img {
+  margin: 0 0 1.5em;
+  padding: 0;
+}
+/* TYPOGRAPHY */
+/* Composed to a scale of 12px, 14px, 16px, 18px, 21px, 24px, 36px, 48px, 60px and 72px */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Palatino, "Palatino Linotype", Garamond, Times, "Times New Roman", serif;
+}
+h1, .h1 {
+  margin: 0;
+  font-size: 3.75em;
+  line-height: 1.2em;
+  margin-bottom: 0.4em;
+}
+/* 60px / 72px */
+h2, .h2 {
+  margin: 0;
+  font-size: 3em;
+  line-height: 1em;
+  margin-bottom: 0.5em;
+}
+/* 48px / 48px */
+h3, .h3 {
+  margin: 0;
+  font-size: 2.25em;
+  line-height: 1.3333333333333333333333333333333em;
+  margin-bottom: 0.6667em;
+}
+/* 36px / 48px */h4, .h4 {
+  margin: 0;
+  font-size: 1.5em;
+  line-height: 1em;
+  margin-bottom: 1em;
+}
+/* 24px / 24px */
+h5, .h5 {
+  margin: 0;
+  font-size: 1.3125em;
+  line-height: 1.1428571428571428571428571428571em;
+  margin-bottom: 1.1428571428571428em;
+}
+/* 21px / 24px */
+h6, .h6 {
+  margin: 0;
+  font-size: 1.125em;
+  line-height: 1.3333333333333333333333333333333em;
+  margin-bottom: 1.3333333333333333em;
+}
+/* 18px / 24px */
+p,
+.p,
+ul,
+blockquote,
+pre,
+td,
+th,
+label {
+  margin: 0;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 1.5em;
+}
+/* 16px / 24px */
+small, .small {
+  margin: 0;
+  font-size: 0.875em;
+  line-height: 1.7142857142857142857142857142857em;
+  margin-bottom: 1.7142857142857142em;
+}
+/* 14px / 24px */
+/* CODE */
+pre {
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+/* Allow line wrapping of 'pre' */
+pre,
+code,
+kbd,
+samp {
+  font-size: 1em;
+  line-height: 1.5em;
+  margin-bottom: 1.5em;
+}
+/* TABLES */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 1.5em;
+}
+th {
+  text-align: left;
+}
+tr, th, td {
+  padding-right: 1.5em;
+  border-bottom: 0 solid #333333;
+}
+/* FORMS */
+form {
+  margin: 0;
+}
+fieldset {
+  border: 0;
+  padding: 0;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+legend {
+  *margin-left: -0.75em;
+}
+button,
+input,
+select,
+textarea {
+  vertical-align: baseline;
+  *vertical-align: middle;
+}
+/* IE7 and older */
+button, input {
+  line-height: normal;
+  *overflow: visible;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+  -webkit-appearance: button;
+}
+input[type="checkbox"], input[type="radio"] {
+  box-sizing: border-box;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+button::-moz-focus-inner, input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+/* QUOTES */
+blockquote, q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+blockquote, q, cite {
+  font-style: italic;
+}
+blockquote {
+  padding-left: 1.5em;
+  border-left: 3px solid #cccccc;
+}
+blockquote > p {
+  padding: 0;
+}
+/* LISTS */
+ul, ol {
+  list-style-position: inside;
+  padding: 0;
+}
+li ul, li ol {
+  margin: 0 1.5em;
+}
+dl dd {
+  margin-left: 1.5em;
+}
+dt {
+  font-family: Futura, "Century Gothic", AppleGothic, sans-serif;
+}
+/* HYPERLINKS */
+a {
+  text-decoration: underline;
+  color: #009;
+}
+a:hover {
+  color: #0000ff;
+}
+a:focus {
+  outline: thin dotted;
+}
+/* Better CSS Outline Suppression */
+a:hover, a:active {
+  outline: none;
+}
+/* MEDIA */
+figure {
+  margin: 0;
+}
+/* Fluid images */
+img,
+object,
+embed,
+video {
+  max-width: 100%;
+  _width: 100%;
+}
+/* Improve IE's resizing of images */
+img {
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+/* Correct IE9 overflow */
+svg:not(:root) {
+  overflow: hidden;
+}
+/* ABBREVIATION */
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted #333;
+  cursor: help;
+}
+/* MARKED/INSERTED/DELETED AND SELECTED TEXT */
+ins, mark {
+  text-decoration: none;
+}
+mark {
+  background: #c47529;
+}
+ins {
+  background: #d49855;
+}
+del {
+  text-decoration: line-through;
+}
+/* selected text */
+::-moz-selection {
+  background: #c47529;
+  color: #fff;
+  text-shadow: none;
+}
+::selection {
+  background: #c47529;
+  color: #fff;
+  text-shadow: none;
+}
+/* OTHERS */
+strong, b, dt {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+var, address {
+  font-style: normal;
+}
+/* Position 'sub' and 'sup' without affecting line-height */
+sub, sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+/* Move superscripted text up */
+sup {
+  top: -0.5em;
+}
+/* Move subscripted text down */
+sub {
+  bottom: -0.25em;
+}
+/* Best available ampersand */
+span.amp {
+  font-family: Adobe Caslon Pro, Baskerville, "Goudy Old Style", "Palatino", "Palatino Linotype", "Book Antiqua", Georgia, "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 110%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+/* MICRO CLEARFIX HACK */
+.cf {
+  zoom: 1;
+}
+.cf:before, .cf:after {
+  content: "";
+  display: table;
+}
+.cf:after {
+  clear: both;
+}
+/* Default Styles for all sized devices */
+/* Center page without wrapper */
+body {
+  width: 98%;
+  margin: 0 auto;
+}
