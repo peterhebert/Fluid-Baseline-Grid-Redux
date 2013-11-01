@@ -49,8 +49,18 @@ I also added a fixed grid generator mixin for generating a column with its width
 * I removed all icons - they were blank anyway
 
 ## Changelog
-* version 1.0.1 (2013-11-01) - changed @Phi value to hard-coded decimal (50 places long) due to the Javascript equation no longer working with LESS > 1.3.3
-* version 1.0 (2013-03-12) - initial release
+
+### version 1.0.1 (2013-11-01)
+* changed @Phi value to hard-coded decimal (50 places long) due to the Javascript equation no longer working with LESS > 1.3.3
+* added variables section at top of base.less to declare base text size, baseline value, default border width
+* added color variables to declare default colors, including the ability to set a base link color and have the hover, active and visited colors generated as shades of the base link color (uses LESS color functions)
+* Adjusted default font stacks
+* Added mixin .baseline-size to create block elements that adhere to the vertical baseline without manually calculating and typing in EM values
+* Added mixins for rounded corners and bordered elements
+* removed color declarations from **ins** and **mark** tags
+* removed body margin from base.less and moved to example stylesheets (layout-fixed-fibonacci and layout-fluid-golden)
+
+### version 1.0 (2013-03-12) - initial release
 
 ### License:
 * Same as the original project. The code and design are released into public domain and are free to use under Unlicense. [Unlicense](http://unlicense.org)

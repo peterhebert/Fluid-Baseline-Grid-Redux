@@ -1,67 +1,122 @@
 /*
-	LESS-ified derivitave of:
-	
-	Fluid Baseline Grid v1.0.0
-	Designed & Built by Josh Hopkins and 40 Horse, http://40horse.com	
+	Fluid Baseline Grid Redux v1.0.1
+	2013-11-01 by Peter Hebert, http://peterhebert.com
+
+	A LESS-ified derivitave of the Fluid Baseline Grid framework by Josh Hopkins and 40 Horse, http://40horse.com	
+
 	Licensed under Unlicense, http://unlicense.org/
-	
-	Adapted to LESS by Peter Hebert, http://peterhebert.com
-	
+
 	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
 	
 	Modified Grid to use Golden Ratio, with a secondary grid based upon the Fibonacci Sequence
-	
 */
 
-// LESS mixins
-/* font stacks */
-.serif-text { font-family: "Palatino Linotype", "Book Antiqua" , "Constantia", "Garamond", "Times New Roman", serif }
-.serif-headlines { font-family: Palatino, "Palatino Linotype", Garamond, Times, "Times New Roman", serif  }
-.sans-text { font-family: Optima, Segoe, "Segoe UI", "Helvetica Neue", Helvetica, Nimbus Sans, Arial, "DejaVu Sans", "Liberation Sans", sans-serif; }
-.sans-headlines { font-family: "Helvetica Neue", Helvetica, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Nimbus Sans, Arial, "Liberation Sans", sans-serif }
+// VARIABLES
+
+@basepx: 16; // 16px browser default
+@base: @basepx/16;
+@basepct: percentage(@base);
+@baseline: 1.5; // multiple of @base
+@bdr-width: 1/@basepx; // 1px border converted to multiple
+
+// variables - color palette
+@col-bg: #fff;
+@col-txt: #000;
+@col-border: lighten(@col-txt, 15%);
+@col-bg-inv: spin(@col-bg, 180);
+@col-text-inv: spin(@col-txt, 180);
+@col-link: #0000CC;
+@col-link-hover: spin(@col-link, 120);
+@col-link-active: darken(@col-link-hover, 20%);
+@col-link-visited: darken(desaturate(spin(@col-link, 30), 25%), 10%); 
+
+/* FONT STACKS */
+.serif-text { font-family: Cambria, Georgia, Times, 'Times New Roman', serif }
+.serif-headlines { font-family: 'Gentium Basic', Palatino, 'Palatino Linotype', Georgia, Times, 'Times New Roman', serif; font-weight: bold; font-style: normal; }
+.script-text { font-family: 'Dancing Script OT', Palatino, 'Palatino Linotype', Garamond, Times, 'Times New Roman', serif; font-weight: normal }
+.sans-text { font-family: Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif; }
+.sans-headlines { font-family: 'Helvetica Neue', Helvetica, 'DejaVu Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Nimbus Sans, Arial, 'Liberation Sans', sans-serif }
 .preformatted { font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace }
 
-.show-baselines {
-	 /* show baselines in background */
-	background:url('../images/baseline-16-24.png') 0 0.125em;
-	background-image:url('../images/baseline-16-24.svg');
+// MIXINS 
+// borders and corners
+.rounded-corners (@radius: .625em) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
 }
+
+.bordered (@width: @bdr-width, @style: solid, @col: @col-border) {
+  border-width: @width;
+  border-style: @style;
+  border-color: @col;
+}
+
+/* show baselines in background */
+.show-baselines {
+  background:url('../../images/baseline-16-24.png') 0 0.125em;
+  background-image:url('../../images/baseline-16-24.svg');
+}
+
+// mixin for generating block elements adhering to vertical baseline rythm
+.baseline-size( @size: @base, @bline: @baseline, @context: @base, @bdr: 0 ) {
+
+	@sizeMultiple: (@size / @context);
+	@blMultiple: (@bline / @context);
+
+	@blAdd: ceil((@size/@bline) - floor(@size/@bline));
+	@nextBaseline: (floor((@size/@bline)+@blAdd)*@bline);
+
+	@lineHeight: ((@nextBaseline/@context)/@sizeMultiple) + 0em;
+
+	font-size: @sizeMultiple + 0em;
+	line-height: @lineHeight;
+	margin: 0 0 ((@blMultiple/@sizeMultiple) - ((@bdr*@bdr-width)/@sizeMultiple) + 0em);
+}
+
+// BASE CSS
+
+/*
+	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
+*/
 
 /* HTML5 DECLARATIONS */
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section, dialog {display: block}
 audio[controls],canvas,video {display: inline-block; *display: inline; zoom: 1}
 
 /* BASE */
-html {height: 100%; font-size: 100%; margin: 0; padding: 0; overflow-y: scroll; -webkit-text-size-adjust: 100%; } /* Force scrollbar in non-IE and Remove iOS text size adjust without disabling user zoom */
-body {margin: 0; padding: 0; min-height: 100%; -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; } /* Improve default text rendering, handling of kerning pairs and ligatures */
-
+html {height: @basepct; font-size: @basepct; margin: 0; padding: 0; overflow-y: scroll; -webkit-text-size-adjust: @basepct; } /* Force scrollbar in non-IE and Remove iOS text size adjust without disabling user zoom */
+body {margin: 0; padding: 0; min-height: @basepct; -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; } /* Improve default text rendering, handling of kerning pairs and ligatures */
 
 /* DEFAULT FONT SETTINGS */
 /* 16px base font size with 150% (24px) friendly, unitless line height and margin for vertical rhythm */
 /* Font-size percentage is based on 16px browser default size */
-body, button, input, select, textarea {font: 100%/1.5; *font-size: 1em; color: #333; .serif-text; } /* IE7 and older can't resize px based text */
-p, blockquote, q, pre, address, hr, code, samp, dl, ol, ul, form, table, fieldset, menu, img {margin: 0 0 1.5em; padding: 0}
+body, button, input, select, textarea { font: @basepct/@baseline; *font-size: (@base + 0em); } /* IE7 and older can't resize px based text */
+p, blockquote, q, pre, address, hr, code, samp, dl, ol, ul, form, table, fieldset, menu, img {margin: 0 0 (@baseline + 0em); padding: 0}
 
 /* TYPOGRAPHY */
-/* Composed to a scale of 12px, 14px, 16px, 18px, 21px, 24px, 36px, 48px, 60px and 72px */
 h1, h2, h3, h4, h5, h6 { .serif-headlines }
-h1, .h1 {margin: 0; font-size: 3.75em; line-height: 1.2em; margin-bottom: 0.4em} /* 60px / 72px */
-h2, .h2 {margin: 0; font-size: 3em; line-height: 1em; margin-bottom: 0.5em} /* 48px / 48px */
-h3, .h3 {margin: 0; font-size: 2.25em; line-height: 1.3333333333333333333333333333333em; margin-bottom: 0.6667em} /* 36px / 48px */ 
-h4, .h4 {margin: 0; font-size: 1.5em; line-height: 1em; margin-bottom: 1em} /* 24px / 24px */
-h5, .h5 {margin: 0; font-size: 1.3125em; line-height: 1.1428571428571428571428571428571em; margin-bottom: 1.1428571428571428571428571428571em} /* 21px / 24px */
-h6, .h6 {margin: 0; font-size: 1.125em; line-height: 1.3333333333333333333333333333333em; margin-bottom: 1.3333333333333333333333333333333em} /* 18px / 24px */
-p, .p, ul, blockquote, pre, td, th, label {margin: 0; font-size: 1em; line-height: 1.5em; margin-bottom: 1.5em} /* 16px / 24px */
-small, .small {margin: 0; font-size: 0.875em; line-height: 1.7142857142857142857142857142857em; margin-bottom: 1.7142857142857142857142857142857em} /* 14px / 24px */
+
+h1 { .baseline-size( 2.25 ); }
+h2 { .baseline-size( 2 ); }
+h3 { .baseline-size( 1.75 ); }
+h4 { .baseline-size( 1.5 ); }
+h5 { .baseline-size( 1.25 ); }
+h6 { .baseline-size( 1.125 ); }
+p, .p, ul, blockquote, pre, td, th, label { .baseline-size( 1 ); }
+small, .small { .baseline-size( 0.75 ); }
 
 /* CODE */
 pre {white-space: pre; white-space: pre-wrap; word-wrap: break-word} /* Allow line wrapping of 'pre' */
-pre, code, kbd, samp {font-size: 1em; line-height: 1.5em; margin-bottom: 1.5em; }
+pre, code, kbd, samp { .preformatted; .baseline-size(1); }
 
 /* TABLES */
-table {border-collapse: collapse; border-spacing: 0; margin-bottom: 1.5em}
+table {border-collapse: collapse; border-spacing: 0; .baseline-size(@base, @baseline, @base, 2); border-bottom: (@bdr-width + 0em) solid @col-border; }
 th {text-align: left}
-tr, th, td {padding-right: 1.5em; border-bottom: 0 solid #333}
+@cellpad: (@baseline/2);
+th, td { padding: (@cellpad + 0em) (@cellpad + 0em) (@cellpad - @bdr-width + 0em) (@cellpad + 0em); .bordered(@bdr-width + 0em); border-bottom: 0 solid @col-border; }
 
 /* FORMS */
 form {margin: 0}
@@ -77,30 +132,35 @@ input[type="search"]::-webkit-search-decoration {-webkit-appearance: none}
 button::-moz-focus-inner, input::-moz-focus-inner {border: 0; padding: 0}
 
 /* QUOTES */
-blockquote, q {quotes: none}
-blockquote:before, blockquote:after, q:before, q:after {content: ''; content: none}
+blockquote {quotes: none}
+blockquote:before, blockquote:after {content: ''; content: none}
+q { quotes: '“' '”' '"' '"' "'" "'" }
+q:before { content: open-quote }
+q:after  { content: close-quote }
+cite:before { content: "—"; }
 blockquote, q, cite {font-style: italic}
-blockquote {padding-left: 1.5em; border-left: 3px solid #ccc}
+blockquote {padding-left: 1.5em; border-left: ((3 * @bdr-width) + 0em) solid @col-border; }
 blockquote > p {padding: 0}
 
 /* LISTS */
 ul, ol {list-style-position: inside; padding: 0}
 li ul, li ol {margin: 0 1.5em}
 dl dd {margin-left: 1.5em}
-dt {font-family:Futura, "Century Gothic", AppleGothic, sans-serif}
 
 /* HYPERLINKS */
-a {text-decoration: underline; color: #009; }
-a:hover { color: #00f }
-a:focus {outline: thin dotted}
+a { text-decoration: underline; color: @col-link; }
+a:hover { color: @col-link-hover }
+a:active { color: @col-link-active }
+a:visited { color: @col-link-visited }
+a:focus {outline: thin dotted; }
 /* Better CSS Outline Suppression */
 a:hover, a:active {outline: none}
 
 /* MEDIA */
-figure {margin: 0}
+figure, figcaption {margin: 0}
 
 /* Fluid images */
-img, object, embed, video {max-width: 100%;	_width: 100%}
+img, object, embed, video { max-width: 100%; _width: 100%}
 
 /* Improve IE's resizing of images */
 img {border: 0;	-ms-interpolation-mode: bicubic}
@@ -113,12 +173,10 @@ abbr[title], dfn[title] {border-bottom: 1px dotted #333; cursor: help}
 
 /* MARKED/INSERTED/DELETED AND SELECTED TEXT */
 ins, mark {text-decoration: none}
-mark {background: #c47529}
-ins {background: #d49855}
 del {text-decoration: line-through}
+
 /* selected text */
-::-moz-selection {background: #c47529; color: #fff; text-shadow: none}
-::selection {background: #c47529; color: #fff; text-shadow: none}
+::-moz-selection, ::selection {background: @col-bg-inv; color: @col-text-inv; text-shadow: none}
 
 /* OTHERS */
 strong, b, dt { font-weight: bold}
@@ -142,10 +200,4 @@ span.amp{font-family:Adobe Caslon Pro,Baskerville,"Goudy Old Style","Palatino","
 	&:before, &:after{ content:""; display:table; }
 	&:after{ clear: both; }
 }
-
-/* Default Styles for all sized devices */
-
-/* Center page without wrapper */
-body {width: 98%; margin: 0 auto}
-
 
