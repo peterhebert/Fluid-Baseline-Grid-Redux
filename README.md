@@ -1,9 +1,10 @@
 # Fluid Baseline Grid Redux
-version: 1.0 (2013-03-12) by [Peter Hebert](http://peterhebert.com)
+version: 1.0.1 (2013-11-01)
+by [Peter Hebert](http://peterhebert.com)
 
-Based Upon the [Fluid Baseline Grid](http://fluidbaselinegrid.com/) by [Josh Hopkins](http://twitter.com/thedayhascome) & [40 Horse](http://40horse.com/).
+A CSS framework based Upon the [Fluid Baseline Grid](http://fluidbaselinegrid.com/) by [Josh Hopkins](http://twitter.com/thedayhascome) & [40 Horse](http://40horse.com/).
 
-I will only detail changes from the original in this document - for further reference look at the [original documentation](http://fluidbaselinegrid.com/)
+I will only detail changes from the original framework in this document - for further reference look at the [original documentation](http://fluidbaselinegrid.com/)
 
 ## Baseline Grid
 Paragraphs are set at a 16px base with 150% (24px) line height to improve readability and improve the appearance of text. At the largest viewport media queries, the base font size has benn bumped up an additional 125% (20px/30px) and 150% (24px/36px) respectively.
@@ -46,6 +47,10 @@ I also added a fixed grid generator mixin for generating a column with its width
 ## Other notes
 * I replaced the baseline grid background images to use SVG with a PNG fallback.
 * I removed all icons - they were blank anyway
+
+## Changelog
+* version 1.0.1 (2013-11-01) - changed @Phi value to hard-coded decimal (50 places long) due to the Javascript equation no longer working with LESS > 1.3.3
+* version 1.0 (2013-03-12) - initial release
 
 ### License:
 * Same as the original project. The code and design are released into public domain and are free to use under Unlicense. [Unlicense](http://unlicense.org)
