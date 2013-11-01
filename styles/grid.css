@@ -1,10 +1,9 @@
-/*
-let's have some fun with grids
-
-*/
+/* let's have some fun with grids */
 /* golden ratio percentages */
 /* GOLDEN RATIO GRID - for fluid layouts */
-.g1, .g2, .g3 {
+.g1,
+.g2,
+.g3 {
   display: inline;
   float: left;
   margin-left: 2%;

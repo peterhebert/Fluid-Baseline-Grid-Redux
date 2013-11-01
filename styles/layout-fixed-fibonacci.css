@@ -1,39 +1,45 @@
 /*
-	LESS-ified derivitave of:
-	
-	Fluid Baseline Grid v1.0.0
-	Designed & Built by Josh Hopkins and 40 Horse, http://40horse.com	
+	Fluid Baseline Grid Redux v1.0.1
+	2013-11-01 by Peter Hebert, http://peterhebert.com
+
+	A LESS-ified derivitave of the Fluid Baseline Grid framework by Josh Hopkins and 40 Horse, http://40horse.com	
+
 	Licensed under Unlicense, http://unlicense.org/
-	
-	Adapted to LESS by Peter Hebert, http://peterhebert.com
-	
+
 	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
 	
 	Modified Grid to use Golden Ratio, with a secondary grid based upon the Fibonacci Sequence
-	
 */
-/* font stacks */
+/* FONT STACKS */
 .serif-text {
-  font-family: "Palatino Linotype", "Book Antiqua", "Constantia", "Garamond", "Times New Roman", serif;
+  font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
 }
 .serif-headlines {
-  font-family: Palatino, "Palatino Linotype", Garamond, Times, "Times New Roman", serif;
+  font-family: 'Gentium Basic', Palatino, 'Palatino Linotype', Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  font-style: normal;
+}
+.script-text {
+  font-family: 'Dancing Script OT', Palatino, 'Palatino Linotype', Garamond, Times, 'Times New Roman', serif;
+  font-weight: normal;
 }
 .sans-text {
-  font-family: Optima, Segoe, "Segoe UI", "Helvetica Neue", Helvetica, Nimbus Sans, Arial, "DejaVu Sans", "Liberation Sans", sans-serif;
+  font-family: Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 .sans-headlines {
-  font-family: "Helvetica Neue", Helvetica, "DejaVu Sans", "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", Nimbus Sans, Arial, "Liberation Sans", sans-serif;
+  font-family: 'Helvetica Neue', Helvetica, 'DejaVu Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Nimbus Sans, Arial, 'Liberation Sans', sans-serif;
 }
 .preformatted {
   font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace;
 }
+/* show baselines in background */
 .show-baselines {
-  /* show baselines in background */
-
-  background: url('../images/baseline-16-24.png') 0 0.125em;
-  background-image: url('../images/baseline-16-24.svg');
+  background: url('../../images/baseline-16-24.png') 0 0.125em;
+  background-image: url('../../images/baseline-16-24.svg');
 }
+/*
+	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
+*/
 /* HTML5 DECLARATIONS */
 article,
 aside,
@@ -49,7 +55,9 @@ section,
 dialog {
   display: block;
 }
-audio[controls], canvas, video {
+audio[controls],
+canvas,
+video {
   display: inline-block;
   *display: inline;
   zoom: 1;
@@ -81,10 +89,8 @@ button,
 input,
 select,
 textarea {
-  font: 100%/1.5;
+  font: NaN%/1.5;
   *font-size: 1em;
-  color: #333;
-  font-family: "Palatino Linotype", "Book Antiqua", "Constantia", "Garamond", "Times New Roman", serif;
 }
 /* IE7 and older can't resize px based text */
 p,
@@ -107,56 +113,46 @@ img {
   padding: 0;
 }
 /* TYPOGRAPHY */
-/* Composed to a scale of 12px, 14px, 16px, 18px, 21px, 24px, 36px, 48px, 60px and 72px */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: Palatino, "Palatino Linotype", Garamond, Times, "Times New Roman", serif;
+  font-family: 'Gentium Basic', Palatino, 'Palatino Linotype', Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  font-style: normal;
 }
-h1, .h1 {
-  margin: 0;
-  font-size: 3.75em;
-  line-height: 1.2em;
-  margin-bottom: 0.4em;
-}
-/* 60px / 72px */
-h2, .h2 {
-  margin: 0;
-  font-size: 3em;
-  line-height: 1em;
-  margin-bottom: 0.5em;
-}
-/* 48px / 48px */
-h3, .h3 {
-  margin: 0;
+h1 {
   font-size: 2.25em;
-  line-height: 1.3333333333333333333333333333333em;
-  margin-bottom: 0.6667em;
+  line-height: 1.3333333333333333em;
+  margin: 0 0 0.6666666666666666em;
 }
-/* 36px / 48px */h4, .h4 {
-  margin: 0;
+h2 {
+  font-size: 2em;
+  line-height: 1.5em;
+  margin: 0 0 0.75em;
+}
+h3 {
+  font-size: 1.75em;
+  line-height: 1.7142857142857142em;
+  margin: 0 0 0.8571428571428571em;
+}
+h4 {
   font-size: 1.5em;
   line-height: 1em;
-  margin-bottom: 1em;
+  margin: 0 0 1em;
 }
-/* 24px / 24px */
-h5, .h5 {
-  margin: 0;
-  font-size: 1.3125em;
-  line-height: 1.1428571428571428571428571428571em;
-  margin-bottom: 1.1428571428571428em;
+h5 {
+  font-size: 1.25em;
+  line-height: 1.2em;
+  margin: 0 0 1.2em;
 }
-/* 21px / 24px */
-h6, .h6 {
-  margin: 0;
+h6 {
   font-size: 1.125em;
-  line-height: 1.3333333333333333333333333333333em;
-  margin-bottom: 1.3333333333333333em;
+  line-height: 1.3333333333333333em;
+  margin: 0 0 1.3333333333333333em;
 }
-/* 18px / 24px */
 p,
 .p,
 ul,
@@ -165,19 +161,16 @@ pre,
 td,
 th,
 label {
-  margin: 0;
   font-size: 1em;
   line-height: 1.5em;
-  margin-bottom: 1.5em;
+  margin: 0 0 1.5em;
 }
-/* 16px / 24px */
-small, .small {
-  margin: 0;
-  font-size: 0.875em;
-  line-height: 1.7142857142857142857142857142857em;
-  margin-bottom: 1.7142857142857142em;
+small,
+.small {
+  font-size: 0.75em;
+  line-height: 2em;
+  margin: 0 0 2em;
 }
-/* 14px / 24px */
 /* CODE */
 pre {
   white-space: pre;
@@ -189,22 +182,30 @@ pre,
 code,
 kbd,
 samp {
+  font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace;
   font-size: 1em;
   line-height: 1.5em;
-  margin-bottom: 1.5em;
+  margin: 0 0 1.5em;
 }
 /* TABLES */
 table {
   border-collapse: collapse;
   border-spacing: 0;
-  margin-bottom: 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
+  margin: 0 0 1.375em;
+  border-bottom: 0.0625em solid #262626;
 }
 th {
   text-align: left;
 }
-tr, th, td {
-  padding-right: 1.5em;
-  border-bottom: 0 solid #333333;
+th,
+td {
+  padding: 0.75em 0.75em 0.6875em 0.75em;
+  border-width: 0.0625em;
+  border-style: solid;
+  border-color: #262626;
+  border-bottom: 0 solid #262626;
 }
 /* FORMS */
 form {
@@ -229,7 +230,8 @@ textarea {
   *vertical-align: middle;
 }
 /* IE7 and older */
-button, input {
+button,
+input {
   line-height: normal;
   *overflow: visible;
 }
@@ -240,7 +242,8 @@ input[type="submit"] {
   cursor: pointer;
   -webkit-appearance: button;
 }
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   box-sizing: border-box;
 }
 input[type="search"] {
@@ -252,62 +255,82 @@ input[type="search"] {
 input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 }
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 /* QUOTES */
-blockquote, q {
+blockquote {
   quotes: none;
 }
 blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:after {
   content: '';
   content: none;
 }
-blockquote, q, cite {
+q {
+  quotes: '“' '”' '"' '"' "'" "'";
+}
+q:before {
+  content: open-quote;
+}
+q:after {
+  content: close-quote;
+}
+cite:before {
+  content: "—";
+}
+blockquote,
+q,
+cite {
   font-style: italic;
 }
 blockquote {
   padding-left: 1.5em;
-  border-left: 3px solid #cccccc;
+  border-left: 0.1875em solid #262626;
 }
 blockquote > p {
   padding: 0;
 }
 /* LISTS */
-ul, ol {
+ul,
+ol {
   list-style-position: inside;
   padding: 0;
 }
-li ul, li ol {
+li ul,
+li ol {
   margin: 0 1.5em;
 }
 dl dd {
   margin-left: 1.5em;
 }
-dt {
-  font-family: Futura, "Century Gothic", AppleGothic, sans-serif;
-}
 /* HYPERLINKS */
 a {
   text-decoration: underline;
-  color: #009;
+  color: #0000cc;
 }
 a:hover {
-  color: #0000ff;
+  color: #cc0000;
+}
+a:active {
+  color: #660000;
+}
+a:visited {
+  color: #4c1386;
 }
 a:focus {
   outline: thin dotted;
 }
 /* Better CSS Outline Suppression */
-a:hover, a:active {
+a:hover,
+a:active {
   outline: none;
 }
 /* MEDIA */
-figure {
+figure,
+figcaption {
   margin: 0;
 }
 /* Fluid images */
@@ -328,46 +351,42 @@ svg:not(:root) {
   overflow: hidden;
 }
 /* ABBREVIATION */
-abbr[title], dfn[title] {
+abbr[title],
+dfn[title] {
   border-bottom: 1px dotted #333;
   cursor: help;
 }
 /* MARKED/INSERTED/DELETED AND SELECTED TEXT */
-ins, mark {
-  text-decoration: none;
-}
+ins,
 mark {
-  background: #c47529;
-}
-ins {
-  background: #d49855;
+  text-decoration: none;
 }
 del {
   text-decoration: line-through;
 }
 /* selected text */
-::-moz-selection {
-  background: #c47529;
-  color: #fff;
-  text-shadow: none;
-}
+::-moz-selection,
 ::selection {
-  background: #c47529;
-  color: #fff;
+  background: #ffffff;
+  color: #000000;
   text-shadow: none;
 }
 /* OTHERS */
-strong, b, dt {
+strong,
+b,
+dt {
   font-weight: bold;
 }
 dfn {
   font-style: italic;
 }
-var, address {
+var,
+address {
   font-style: normal;
 }
 /* Position 'sub' and 'sup' without affecting line-height */
-sub, sup {
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -394,26 +413,20 @@ span.amp {
 .cf {
   zoom: 1;
 }
-.cf:before, .cf:after {
+.cf:before,
+.cf:after {
   content: "";
   display: table;
 }
 .cf:after {
   clear: both;
 }
-/* Default Styles for all sized devices */
-/* Center page without wrapper */
-body {
-  width: 98%;
-  margin: 0 auto;
-}
-/*
-let's have some fun with grids
-
-*/
+/* let's have some fun with grids */
 /* golden ratio percentages */
 /* GOLDEN RATIO GRID - for fluid layouts */
-.g1, .g2, .g3 {
+.g1,
+.g2,
+.g3 {
   display: inline;
   float: left;
   margin-left: 2%;
@@ -447,8 +460,15 @@ let's have some fun with grids
 @m = margin on each side
 @p = padding on each side 
 */
-/* base styles for all media */
-header, footer, #content {
+/* Default Styles for all sized devices */
+/* Center page without wrapper */
+body {
+  width: 98%;
+  margin: 0 auto;
+}
+header,
+footer,
+#content {
   zoom: 1;
   margin: 0 auto;
 }
@@ -461,13 +481,17 @@ footer:after,
   content: "";
   display: table;
 }
-header:after, footer:after, #content:after {
+header:after,
+footer:after,
+#content:after {
   clear: both;
 }
 /* fibonnaci fixed grid examples */
 @media screen and (min-width: 38em) and (max-width: 60.5em) {
   /* fixed fibonaci  | 2 column */
-  header, footer, #content {
+  header,
+  footer,
+  #content {
     width: 36em;
   }
   #primary {
@@ -495,7 +519,9 @@ header:after, footer:after, #content:after {
 }
 @media screen and (min-width: 60.5em) and (max-width: 96.5em) {
   /* fixed fibonaci  | 3 column */
-  header, footer, #content {
+  header,
+  footer,
+  #content {
     width: 58.5em;
   }
   #primary {
@@ -525,7 +551,9 @@ header:after, footer:after, #content:after {
 }
 @media screen and (min-width: 96.5em) and (max-width: 155em) {
   /* fixed fibonaci  | 4 column */
-  header, footer, #content {
+  header,
+  footer,
+  #content {
     width: 94.5em;
   }
   #primary {
@@ -570,7 +598,9 @@ header:after, footer:after, #content:after {
   }
 }
 @media screen and (min-width: 155em) {
-  header, footer, #content {
+  header,
+  footer,
+  #content {
     width: 153em;
   }
   #primary {
@@ -624,7 +654,8 @@ header:after, footer:after, #content:after {
     -ms-filter: none !important;
   }
   /* Black prints faster */
-  a, a:visited {
+  a,
+  a:visited {
     color: #444 !important;
     text-decoration: underline;
   }
@@ -634,11 +665,14 @@ header:after, footer:after, #content:after {
   abbr[title]:after {
     content: " (" attr(title) ")";
   }
-  .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
     content: "";
   }
   /* Don't print links for images, javascript or internal links */
-  pre, blockquote {
+  pre,
+  blockquote {
     border: 1px solid #999;
     page-break-inside: avoid;
   }
@@ -646,7 +680,8 @@ header:after, footer:after, #content:after {
     display: table-header-group;
   }
   /* Repeat header row at top of each printed page */
-  tr, img {
+  tr,
+  img {
     page-break-inside: avoid;
   }
   img {
@@ -655,11 +690,14 @@ header:after, footer:after, #content:after {
   @page  {
     margin: 0.5cm;
   }
-  p, h2, h3 {
+  p,
+  h2,
+  h3 {
     orphans: 3;
     widows: 3;
   }
-  h2, h3 {
+  h2,
+  h3 {
     page-break-after: avoid;
   }
 }
