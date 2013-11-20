@@ -50,6 +50,9 @@ I also added a fixed grid generator mixin for generating a column with its width
 
 ## Changelog
 
+## 2013-11-20
+* updated LESS version linked to in HTML examples to 1.5.0
+
 ### version 1.0.1 (2013-11-01)
 * changed @Phi value to hard-coded decimal (50 places long) due to the Javascript equation no longer working with LESS > 1.3.3
 * added variables section at top of base.less to declare base text size, baseline value, default border width
@@ -63,4 +66,4 @@ I also added a fixed grid generator mixin for generating a column with its width
 ### version 1.0 (2013-03-12) - initial release
 
 ### License:
-* Same as the original project. The code and design are released into public domain and are free to use under Unlicense. [Unlicense](http://unlicense.org)
+* Same as the original project. The code and design are released into public domain and are free to use under [Unlicense](http://unlicense.org).
