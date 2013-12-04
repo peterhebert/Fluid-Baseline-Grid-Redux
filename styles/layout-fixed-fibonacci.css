@@ -34,8 +34,8 @@
 }
 /* show baselines in background */
 .show-baselines {
-  background: url('../../images/baseline-16-24.png') 0 0.125em;
-  background-image: url('../../images/baseline-16-24.svg');
+  background: url('../images/baseline-16-24.png') 0 0.125em;
+  background-image: url('../images/baseline-16-24.svg');
 }
 /*
 	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
