@@ -99,8 +99,6 @@ The file structure for FBG is straight-forward and contains only the minimum fil
 * images [folder]:
 	* grid_bg.gif: Repeating background for vertical rhythm testing purposes
 * index.html: Base HTML page that includes only necessary minimal markup
-* favicon.ico: Standard 16x16 favicon
-* apple-touch-icon (x3): Maximum touch-icon support. Sizes for iPhone 3, iPad and iPhone 4 retina
 * robots.txt: SEO, search-crawler file
 
 ## Other notes
