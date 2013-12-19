@@ -1,16 +1,5 @@
-/*
-	Fluid Baseline Grid Redux v1.0.1
-	2013-11-01 by Peter Hebert, http://peterhebert.com
-
-	A LESS-ified derivitave of the Fluid Baseline Grid framework by Josh Hopkins and 40 Horse, http://40horse.com	
-
-	Licensed under Unlicense, http://unlicense.org/
-
-	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
-	
-	Modified Grid to use Golden Ratio, with a secondary grid based upon the Fibonacci Sequence
-*/
-/* FONT STACKS */
+/* Example Stylesheet - Golden Ratio grid system */
+/* font stacks */
 .serif-text {
   font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
 }
@@ -19,23 +8,14 @@
   font-weight: bold;
   font-style: normal;
 }
-.script-text {
-  font-family: 'Dancing Script OT', Palatino, 'Palatino Linotype', Garamond, Times, 'Times New Roman', serif;
-  font-weight: normal;
-}
 .sans-text {
   font-family: Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
 .sans-headlines {
-  font-family: 'Helvetica Neue', Helvetica, 'DejaVu Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Nimbus Sans, Arial, 'Liberation Sans', sans-serif;
+  font-family: 'Trebuchet MS', Arial, 'Liberation Sans', sans-serif;
 }
 .preformatted {
   font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace;
-}
-/* show baselines in background */
-.show-baselines {
-  background: url('../images/baseline-16-24.png') 0 0.125em;
-  background-image: url('../images/baseline-16-24.svg');
 }
 /*
 	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
@@ -81,6 +61,9 @@ body {
   text-rendering: optimizeLegibility;
 }
 /* Improve default text rendering, handling of kerning pairs and ligatures */
+body {
+  font-family: Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+}
 /* DEFAULT FONT SETTINGS */
 /* 16px base font size with 150% (24px) friendly, unitless line height and margin for vertical rhythm */
 /* Font-size percentage is based on 16px browser default size */
@@ -107,8 +90,7 @@ ul,
 form,
 table,
 fieldset,
-menu,
-img {
+menu {
   margin: 0 0 1.5em;
   padding: 0;
 }
@@ -119,9 +101,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Gentium Basic', Palatino, 'Palatino Linotype', Georgia, Times, 'Times New Roman', serif;
-  font-weight: bold;
-  font-style: normal;
+  font-family: 'Trebuchet MS', Arial, 'Liberation Sans', sans-serif;
 }
 h1 {
   font-size: 2.25em;
@@ -343,6 +323,8 @@ video {
 }
 /* Improve IE's resizing of images */
 img {
+  margin: 0;
+  padding: 0;
   border: 0;
   -ms-interpolation-mode: bicubic;
 }
@@ -421,45 +403,23 @@ span.amp {
 .cf:after {
   clear: both;
 }
-/* let's have some fun with grids */
-/* golden ratio percentages */
-/* GOLDEN RATIO GRID - for fluid layouts */
-.g1,
-.g2,
-.g3 {
+.golden-a,
+.golden-b,
+.golden-full {
   display: inline;
   float: left;
   margin-left: 2%;
   margin-right: 2%;
 }
-.g1 {
+.golden-a {
   width: 57.803398874989476%;
 }
-.g2 {
+.golden-b {
   width: 34.196601125010524%;
 }
-/* full width - gutter */
-.g3 {
+.golden-full {
   width: 96%;
 }
-/* for sub-layouts without nesting divs */
-/* fixed width layout grids */
-/* base column width without margin or padding */
-/* FIBONACCI SEQUENCE BASED GRID */
-/* measurements in EMs
-@n = nth number in sequence
-@m = margin on each side
-@p = padding on each side (defaults to none)
-@b = base column width
-*/
-/* allow columns to stack vertically without floating */
-/* GENERIC COLUMN GENERATOR */
-/* measurements in ems
-@cols = column span
-@b = base column width
-@m = margin on each side
-@p = padding on each side 
-*/
 /* Default Styles for all sized devices */
 /* Center page without wrapper */
 body {

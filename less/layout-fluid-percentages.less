@@ -1,0 +1,119 @@
+/* Example Stylesheet - Golden Ratio grid system */
+
+// core - required files
+@import "variables";
+@import "base";
+
+// optional grid generators
+@import "grid";
+
+// optional mixins
+@import "mixins";
+
+// suggested print media stylesheet
+@import "print";
+
+
+/* Default Styles for all sized devices */
+
+/* Center page without wrapper */
+body {width: 98%; margin: 0 auto}
+
+
+header, footer, #content  { .cf; margin: 0 auto }
+
+
+/* percentage grid examples */
+
+	@media screen and (max-width: 36em) 
+	{
+		/* phone | 1 column */
+    header section,
+    header div,
+    #content section { .percentColumn (12, 12); }
+	
+	}
+	@media screen and (min-width: 36em)
+	{
+		/* small tablet / desktop | 2 column */
+
+    header section,
+		#primary { 
+		  .percentColumn (8, 12); 
+		}
+    header div,
+		#secondary,
+		#third,
+		#fourth,
+		#fifth,
+		#sixth
+		{
+		  .percentColumn (4, 12); 
+		}
+
+	}
+	@media screen and (min-width: 58.5em) and (max-width: 94.5em) 
+	{
+		/* medium tablet / desktop | 3 column */
+
+		#primary { .percentColumn (6, 12) }
+		#secondary,
+		#third,
+		#fourth,
+		#fifth,
+		#sixth
+		{
+		  .percentColumn (3, 12); 
+		}
+
+	}
+	@media screen and (min-width: 94.5em)  
+	{
+		/* medium tablet / desktop | 4 column */
+	 
+		#primary,
+		#secondary
+		{
+		  .percentColumn (4, 12); 
+		}
+		#third,
+		#fourth,
+		#fifth,
+		#sixth
+		{
+		  .percentColumn (2, 12); 
+		}
+
+		/* 20px / 30px  body text */
+		.show-baselines {
+			background:url('../images/baseline-20-30.png') 0 0.125em;
+			background-image:  url('../images/baseline-20-30.svg');
+		}
+		body { font-size:125%;	}
+
+	}
+	@media screen and (min-width: 117em)
+	{
+		/* extra large desktop | 6 column */
+
+		#primary,
+		#secondary,
+		#third,
+		#fourth,
+		#fifth,
+		#sixth
+		{
+		  .percentColumn (2, 12); 
+		}
+
+		/* 24px / 36px  body text */
+		.show-baselines {
+			background:url('../images/baseline-24-36.png') 0 0.125em;
+			background-image:url('../images/baseline-24-36.svg');
+		}
+		body { font-size:150%;	}
+	}
+
+
+@import "print";
+

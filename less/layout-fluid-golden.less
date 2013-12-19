@@ -45,7 +45,7 @@ header div { .golden-b }
 		#third,
 		#fourth,
 		#fifth
-		 { .golden-b; display: block; float:none; margin-left: (@goldenA + @baseMargin) }
+		 { .golden-b; display: block; float:none; margin-left: (@goldenA + @gBaseMargin) }
 
 	}
 	@media screen and (min-width: 58.5em) and (max-width: 94.5em) 
@@ -56,7 +56,7 @@ header div { .golden-b }
 		#secondary { .golden-nest(@ga, @gb) }
 		#third,
 		#fourth,
-		#fifth { .golden-nest(@ga, @ga); display: block; float:none; margin-left: (@goldenA + @baseMargin) }
+		#fifth { .golden-nest(@ga, @ga); display: block; float:none; margin-left: (@goldenA + @gBaseMargin) }
 
 	}
 	@media screen and (min-width: 94.5em) and (max-width: 117em) 
@@ -67,7 +67,7 @@ header div { .golden-b }
 		#secondary { .golden-nest(@ga, @gb) }
 		#third,
 		#fourth,
-		#fifth { .golden-nest(@ga, @ga); display: block; float:none; margin-left: (@goldenA + @baseMargin) }
+		#fifth { .golden-nest(@ga, @ga); display: block; float:none; margin-left: (@goldenA + @gBaseMargin) }
 
 		/* 20px / 30px  body text */
 		.show-baselines {
