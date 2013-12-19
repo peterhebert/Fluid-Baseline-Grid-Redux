@@ -1,0 +1,26 @@
+// VARIABLES
+
+@basepx: 16; // 16px browser default
+@base: @basepx/16;
+@basepct: percentage(@base);
+@baseline: 1.5; // multiple of @base
+@bdr-width: 1/@basepx; // 1px border converted to multiple
+
+// variables - color palette
+@col-bg: #fff;
+@col-txt: #000;
+@col-border: lighten(@col-txt, 15%);
+@col-bg-inv: spin(@col-bg, 180);
+@col-text-inv: spin(@col-txt, 180);
+@col-link: #0000CC;
+@col-link-hover: #CC0000;
+@col-link-active: #660000;
+@col-link-visited: #4c1386; 
+
+/* font stacks */
+.serif-text { font-family: Cambria, Georgia, Times, 'Times New Roman', serif }
+.serif-headlines { font-family: 'Gentium Basic', Palatino, 'Palatino Linotype', Georgia, Times, 'Times New Roman', serif; font-weight: bold; font-style: normal; }
+.sans-text { font-family: Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif; }
+.sans-headlines { font-family: 'Trebuchet MS', Arial, 'Liberation Sans', sans-serif }
+.preformatted { font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace }
+

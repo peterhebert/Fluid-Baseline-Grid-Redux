@@ -1,66 +1,4 @@
-/*
-	Fluid Baseline Grid Redux v1.0.1
-	2013-11-01 by Peter Hebert, http://peterhebert.com
-
-	A LESS-ified derivitave of the Fluid Baseline Grid framework by Josh Hopkins and 40 Horse, http://40horse.com	
-
-	Licensed under Unlicense, http://unlicense.org/
-
-	Base stylesheet with CSS normalization, typographic baseline grid and progressive responsiveness
-	
-	Modified Grid to use Golden Ratio, with a secondary grid based upon the Fibonacci Sequence
-*/
-
-// VARIABLES
-
-@basepx: 16; // 16px browser default
-@base: @basepx/16;
-@basepct: percentage(@base);
-@baseline: 1.5; // multiple of @base
-@bdr-width: 1/@basepx; // 1px border converted to multiple
-
-// variables - color palette
-@col-bg: #fff;
-@col-txt: #000;
-@col-border: lighten(@col-txt, 15%);
-@col-bg-inv: spin(@col-bg, 180);
-@col-text-inv: spin(@col-txt, 180);
-@col-link: #0000CC;
-@col-link-hover: spin(@col-link, 120);
-@col-link-active: darken(@col-link-hover, 20%);
-@col-link-visited: darken(desaturate(spin(@col-link, 30), 25%), 10%); 
-
-/* FONT STACKS */
-.serif-text { font-family: Cambria, Georgia, Times, 'Times New Roman', serif }
-.serif-headlines { font-family: 'Gentium Basic', Palatino, 'Palatino Linotype', Georgia, Times, 'Times New Roman', serif; font-weight: bold; font-style: normal; }
-.script-text { font-family: 'Dancing Script OT', Palatino, 'Palatino Linotype', Garamond, Times, 'Times New Roman', serif; font-weight: normal }
-.sans-text { font-family: Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif; }
-.sans-headlines { font-family: 'Helvetica Neue', Helvetica, 'DejaVu Sans', 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Nimbus Sans, Arial, 'Liberation Sans', sans-serif }
-.preformatted { font-family: Menlo, Consolas, 'DejaVu Sans Mono', Monaco, monospace }
-
-// MIXINS 
-// borders and corners
-.rounded-corners (@radius: .625em) {
-  -webkit-border-radius: @radius;
-  -moz-border-radius: @radius;
-  -ms-border-radius: @radius;
-  -o-border-radius: @radius;
-  border-radius: @radius;
-}
-
-.bordered (@width: @bdr-width, @style: solid, @col: @col-border) {
-  border-width: @width;
-  border-style: @style;
-  border-color: @col;
-}
-
-/* show baselines in background */
-.show-baselines {
-  background:url('../images/baseline-16-24.png') 0 0.125em;
-  background-image:url('../images/baseline-16-24.svg');
-}
-
-// mixin for generating block elements adhering to vertical baseline rythm
+// CORE MIXIN for generating block elements adhering to vertical baseline rythm
 .baseline-size( @size: @base, @bline: @baseline, @context: @base, @bdr: 0 ) {
 
 	@sizeMultiple: (@size / @context);
@@ -89,15 +27,16 @@ audio[controls],canvas,video {display: inline-block; *display: inline; zoom: 1}
 /* BASE */
 html {height: @basepct; font-size: @basepct; margin: 0; padding: 0; overflow-y: scroll; -webkit-text-size-adjust: @basepct; } /* Force scrollbar in non-IE and Remove iOS text size adjust without disabling user zoom */
 body {margin: 0; padding: 0; min-height: @basepct; -webkit-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility; } /* Improve default text rendering, handling of kerning pairs and ligatures */
+body { .sans-text }
 
 /* DEFAULT FONT SETTINGS */
 /* 16px base font size with 150% (24px) friendly, unitless line height and margin for vertical rhythm */
 /* Font-size percentage is based on 16px browser default size */
 body, button, input, select, textarea { font: @basepct/@baseline; *font-size: (@base + 0em); } /* IE7 and older can't resize px based text */
-p, blockquote, q, pre, address, hr, code, samp, dl, ol, ul, form, table, fieldset, menu, img {margin: 0 0 (@baseline + 0em); padding: 0}
+p, blockquote, q, pre, address, hr, code, samp, dl, ol, ul, form, table, fieldset, menu {margin: 0 0 (@baseline + 0em); padding: 0}
 
 /* TYPOGRAPHY */
-h1, h2, h3, h4, h5, h6 { .serif-headlines }
+h1, h2, h3, h4, h5, h6 { .sans-headlines }
 
 h1 { .baseline-size( 2.25 ); }
 h2 { .baseline-size( 2 ); }
@@ -148,22 +87,27 @@ li ul, li ol {margin: 0 1.5em}
 dl dd {margin-left: 1.5em}
 
 /* HYPERLINKS */
-a { text-decoration: underline; color: @col-link; }
-a:hover { color: @col-link-hover }
-a:active { color: @col-link-active }
-a:visited { color: @col-link-visited }
-a:focus {outline: thin dotted; }
+a { 
+	text-decoration: underline; 
+	color: @col-link; 
+	&:hover { color: @col-link-hover }
+	&:active { color: @col-link-active }
+	&:visited { color: @col-link-visited }
+	&:focus {outline: thin dotted; }
+}
 /* Better CSS Outline Suppression */
-a:hover, a:active {outline: none}
+a:hover, a:active {
+	outline: none
+}
 
 /* MEDIA */
-figure, figcaption {margin: 0}
+figure, figcaption { margin: 0 }
 
 /* Fluid images */
 img, object, embed, video { max-width: 100%; _width: 100%}
 
 /* Improve IE's resizing of images */
-img {border: 0;	-ms-interpolation-mode: bicubic}
+img { margin:0; padding: 0; border: 0;	-ms-interpolation-mode: bicubic}
 
 /* Correct IE9 overflow */
 svg:not(:root) {overflow: hidden}

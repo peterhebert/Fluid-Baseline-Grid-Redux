@@ -1,0 +1,123 @@
+// variables for grid generation
+@Phi: 1.61803398874989484820458683436563811772030917980576;
+
+@ga: (1/@Phi);
+@gb: (1 - (1/@Phi));
+
+@goldenA: percentage(1/@Phi);
+@goldenB: percentage(1 - (1/@Phi));
+
+@baseMarginDecimal: .01; // 1 = 100%
+@basePaddingDecimal: 0; // 1 = 100%
+
+@baseMarginEm: .75; // EM unit to be added in mixins
+@basePaddingEm: 0; // EM unit to be added in mixins
+
+@gBaseMargin: percentage(@baseMarginDecimal * 2);
+@gTotalMargin: percentage(@baseMarginDecimal * 4);
+
+// GOLDEN RATIO grid generator - for fluid layouts
+
+.golden-a, .golden-b, .golden-full {
+  display:inline; 
+  float: left; 
+  margin-left: @gBaseMargin; 
+  margin-right: @gBaseMargin; 
+}
+.golden-a {width: (@goldenA - @gTotalMargin); } // larger column
+.golden-b {width: (@goldenB - @gTotalMargin) } // smaller column
+.golden-full {width: (100% - @gTotalMargin ) } // full width - gutter
+
+// for sub-layouts without nesting divs
+.golden-nest(@parent: 1, @child: 1)
+{
+  display:inline; 
+  float: left; 
+  width: (percentage(@parent * @child) - @totalMargin);
+  margin-left: @gBaseMargin; 
+  margin-right: @gBaseMargin; 
+}
+
+// variables for other grid systems
+
+// base column width without margin or padding
+@basecolwidth: 4.5; // 4.5em = 72px
+
+// FIBONACCI SEQUENCE grid generator - for fixed layouts
+
+// measurements in EMs
+// @n = nth number in sequence
+// @m = margin on each side
+// @p = padding on each side (defaults to none)
+// @b = base column width
+
+.fib (@n: 3, @m: @baseMarginEm, @p: @basePaddingEm, @b: @basecolwidth) {
+    
+  @col:`(Math.round(Math.pow(@{Phi},@{n})/Math.sqrt(5)) * @{b}) - (2* (@{m} + @{p}))`;
+
+    display:inline; 
+    float: left; 
+    width: ~`"@{col}rem"`;
+    margin-left: ~`"@{m}rem"`;
+    margin-right: ~`"@{m}rem"`;
+    padding: ~`"@{p}rem"`;
+
+}
+// allows columns to stack vertically without floating
+.fib-unfloat (@n: 3, @m: @baseMarginEm, @b: @basecolwidth) {
+    
+  @ml:`(Math.round(Math.pow(@{Phi},@{n})/Math.sqrt(5)) * @{b}) + @{m}`;
+  
+    display:block; 
+    float: none; 
+    margin-left: ~`"@{ml}rem"`;
+
+}
+
+// GENERIC COLUMN GENERATORS
+
+// EM based measurements
+// @cols = column span
+// @m = margin on each side
+// @p = padding on each side 
+// @b = base column width
+
+.emColumn (@cols: 1, @m: @baseMarginEm, @p: @basePaddingEm, @b: @basecolwidth)
+{
+    @colw: (@cols * @b) - (2* (@m + @p));
+
+    display:inline; 
+    float: left; 
+    width: unit(@colw, em);
+    margin-left: unit(@m, em);
+    margin-right: unit(@m, em);
+    padding: unit(@p, em);
+}
+
+// percentage based columns
+// @span - width to span X number of columns
+// @cols - based upon X total columns in parent
+
+.percentColumn (@span: 1, @cols: 12, @m: @baseMarginDecimal, @p: @basePaddingDecimal)
+{
+    @colw: (@span * (1/@cols)) - (2* (@m + @p));
+
+    display:inline; 
+    float: left; 
+    width: percentage(@colw);
+    margin-left: percentage(@m);
+    margin-right: percentage(@m);
+    padding: percentage(@p);
+}
+
+// generic column float with no width specification
+.float (@m: @baseMarginEm, @p: @basePaddingEm)
+{
+    display:inline; 
+    float: left; 
+    margin-left: unit(@m, em);
+    margin-right: unit(@m, em);
+    padding: unit(@p, em);
+}
+
+
